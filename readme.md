@@ -8,6 +8,11 @@ This is only for testing Three.js variables introduced into components, not vari
 
 Make sure this is not imported into any production builds and only used for dev testing.
 
+## Installation
+```js
+npm install github:tallseanlynch/three-instance-stats
+```
+
 ## Usage step 1
 Comment out variables which you would like to get an instance count of, import then from three-instance-stats instead. If using TypeScript, you will need to import some classes from Three.js for their types. Include InstanceStats for a React component that will display stats as a table.
 
