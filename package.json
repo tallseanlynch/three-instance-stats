@@ -1,0 +1,26 @@
+{
+  "name": "three-instance-stats",
+  "version": "0.1.0",
+  "description": "Three.js classes proxy for testing and counting number of instances of classes",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "three.js",
+    "instance",
+    "stats",
+    "performance"
+  ],
+  "author": "Sean Lynch",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "three": "^0.174.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.10",
+    "@types/three": "^0.174.0",
+    "typescript": "^5.8.2"
+  }
+}
