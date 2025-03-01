@@ -31,7 +31,7 @@ import {
     Vector3,
     Quaternion,
     InstanceStats // React component that displays stats
-} from '../path-in-project/three-instance-stats'
+} from 'three-instance-stats'
 ```
 
 ## Usage step 2
