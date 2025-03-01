@@ -4,8 +4,9 @@
   "description": "Three.js classes proxy for testing and counting number of instances of classes",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc && node copy-file.js"
   },
+  "type": "module",
   "keywords": [
     "three.js",
     "instance",
