@@ -2,10 +2,10 @@
 
 Simple Proxy around Three.js classes to allow a count of how many instances of that class have been created. This only works with classes from Three.js and not everything is supported. Simple classes like Color, Euler and Vector3 are best to test.
 
-InstanceStats React Component:
+## InstanceStats React Component
 <img src="./preview.png">
 
-Resuts of instances() and instanceLines() called from the window:
+## Results of instances() and instanceLines()
 <img src="./preview-window.png">
 <img src="./preview-lines.png">
 
