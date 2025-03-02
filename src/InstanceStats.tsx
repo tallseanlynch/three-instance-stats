@@ -7,15 +7,15 @@ import { instances } from './index'
 import './instance-stats.css';
 
 interface InstanceStatsProps {
+    greaterThan?: number;
     updateTimeMS?: number;
     stats?: string[];
-    showAll?: boolean;
 }
 
 const InstanceStats: React.FC<InstanceStatsProps> = ({
-    updateTimeMS = 500, 
+    greaterThan = 0,
     stats = [], 
-    showAll = false
+    updateTimeMS = 500 
 }) => {
     const [instanceStats, setInstanceStats] = useState<{[key: string]: number}>({});
     const [visible, setVisible] = useState<boolean>(true)
@@ -34,18 +34,18 @@ const InstanceStats: React.FC<InstanceStatsProps> = ({
     }, [updateTimeMS]);
   
     const statsToShow = Object.keys(instanceStats)
-        .filter(instanceStat => instanceStats[instanceStat] > 0 || showAll === true)
-        .filter(instanceStat => stats.indexOf(instanceStat) > -1 || (stats.length === 0 && instanceStats[instanceStat] > 0) || showAll === true);
+        .filter(instanceStat => instanceStats[instanceStat] > greaterThan)
+        .filter(instanceStat => stats.indexOf(instanceStat) > -1 || (stats.length === 0 && instanceStats[instanceStat] > greaterThan));
 
     return (
-        <div className={`instance-stats-container ${statsToShow.length > 25 && visible === true ? 'length-25-plus' : ''}`}>
+        <div className={`instance-stats-container ${statsToShow.length > 20 && visible === true ? 'length-20-plus' : ''}`}>
             <div className='instance-stats-button'>
                 <button onClick={handleVisibleClick}>{visible === true ? 'Hide Instance Stats' : 'Show Instance Stats'}</button>
             </div>
             {visible === true && 
                 <div 
                     className='instance-stats-text'
-                    style={{width: Math.ceil(statsToShow.length / 25) * 225}}
+                    style={{width: Math.ceil(statsToShow.length / 20) * 225}}
                 >
                     {
                         statsToShow.map((instanceStat: string , index: number) => {

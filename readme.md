@@ -2,7 +2,12 @@
 
 Simple Proxy around Three.js classes to allow a count of how many instances of that class have been created. This only works with classes from Three.js and not everything is supported. Simple classes like Color, Euler and Vector3 are best to test.
 
+InstanceStats React Component:
 <img src="./preview.png">
+
+Resuts of instances() and instanceLines() called from the window:
+<img src="./preview-window.png">
+<img src="./preview-lines.png">
 
 This is only for testing Three.js variables introduced into components, not variables instantiated outside of a component, like variable instantiated by react-three/fiber.
 
@@ -20,7 +25,7 @@ Comment out variables which you would like to get an instance count of, import t
 import {
 //     Color,
 //     Vector2,
-    Vector3 as Vector3Type,
+    Vector3 as Vector3Type, // For TypeScript type definition
 //     Quaternion,
     TextureLoader
 } from 'three'
@@ -30,8 +35,14 @@ import {
     Vector2,
     Vector3,
     Quaternion,
-    InstanceStats // React component that displays stats
+    InstanceStats, // React component that displays stats
+    instances, // Function to get all instance counts
+    instanceLines // Function to get all instance counts at line of instantiation
 } from 'three-instance-stats'
+
+// If you would like to call instances and instanceLines from the window
+(window as any).instances = instances;
+(window as any).instanceLines = instanceLines;
 ```
 
 ## Usage step 2
@@ -39,20 +50,20 @@ Added InstanceStats component into your app / component.
 
 ```js
 // Will increment the instance count for Vector3 by 1.
-const startingPosition = new Vector3(0.5, 1.0, 2.0);
+const startingPosition: Vector3Type = new Vector3(0.5, 1.0, 2.0);
 
 const ComponentWithStats = () => {
     return (
         <>
             <InstanceStats 
-                // Number of miliseconds between each update.
-                // Default is 500
-                updateTimeMS={1000} 
-                // Array of strings selecting which stats to display.
+                // Values with instance counts larger than this number will be included
+                greaterThan={0}
+                // Array of strings selecting which stats to display
                 // If empty display all stats with instance counts > 0
                 stats={['Color', 'Euler', 'Vector2', 'Vector3']}
-                // Boolean to display all stats regardless of stats value
-                showAll={false}
+                // Number of miliseconds between each update
+                // Default is 500
+                updateTimeMS={1000} 
             />
             <Canvas>
                 <InstanceScene startingPosition={startingPosition}/>
